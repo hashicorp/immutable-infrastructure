@@ -28,7 +28,7 @@ With Immutable Infrastructure, we leverage virtualization and cloud computing to
 **REPOSITORY CONTENTS**
 
 images:
-* directory storing packer image deplate (image.pkr.hcl)
+* directory storing packer image template (image.pkr.hcl)
 
 instances:
 * main.tf : declaration of terraform resources, aws_instance resource, and output public ip address
