@@ -15,7 +15,7 @@
 
 With Immutable Infrastructure, we leverage virtualization and cloud computing to allow for new deployment workflows in which new servers can be provisioned quickly and programmatically 
   * **virtualization** = when a simulated computing environment is created rather than a physical environment
-  **cloud computing** = using network of remote servers hosted via internet to store, manage + process data
+  * **cloud computing** = using network of remote servers hosted via internet to store, manage + process data
   
   **Benefits of Cloud Computing**
   
