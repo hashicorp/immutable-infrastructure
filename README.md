@@ -46,3 +46,9 @@ Additional files:
 **NOTE:** This repository will be associated with an Instruqt lab tracK. The track will utilize this repo to show the process of deploying a machine image, updating the image, and showing it redeploy
 
 **NOTE:** This is just a copy from the Companion code repository. Using the same template to get a feeling of building an image with packer and deploying it using terraform. There is a lot of different ways to build an image and use different provisioners for web-apps: I found this the most easiest way instead of using a .service file.. We just use a shell script and issue a go-get with a github link to your web-app.
+
+**Resources:**
+1. https://www.digitalocean.com/community/tutorials/what-is-immutable-infrastructure
+2. https://www.sumologic.com/insight/mutable-immutable-infrastructure/
+3. https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure
+4. https://www.hashicorp.com/resources/modern-infrastructure-automation-with-packer-terraform-and-consul
