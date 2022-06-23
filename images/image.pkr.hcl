@@ -27,13 +27,27 @@ source "amazon-ebs" "immutable-infrastructure" {
 
 # a build block invokes sources and runs provisioning steps on them.
 build {
-  sources = ["source.amazon-ebs.immutable-infrastructure"]
 
-  provisioner "file" {
-    source      = "../tf-packer.pub"
-    destination = "/tmp/tf-packer.pub"
-  }
-  provisioner "shell" {
-    script = "../scripts/setup.sh"
+  hcp_packer_registry {
+    bucket_name = "immutable-infrastructure"
+    description = <<EOT
+      Immutable Infrastructure version 1.
+    EOT
+    bucket_labels = {
+      "owner"          = "immutable-infrastructure-team"
+      "os"             = "Ubuntu",
+      "ubuntu-version" = "Focal 20.04",
+    }
+
+    sources = ["source.amazon-ebs.immutable-infrastructure"]
+
+    provisioner "file" {
+      source      = "../tf-packer.pub"
+      destination = "/tmp/tf-packer.pub"
+    }
+    provisioner "shell" {
+      script = "../scripts/setup.sh"
+    }
   }
 }
+
