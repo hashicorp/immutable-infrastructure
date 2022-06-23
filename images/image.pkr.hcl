@@ -3,6 +3,11 @@ variable "region" {
   default = "us-east-1"
 }
 
+variable "version" {
+  type    = string
+  default = "1.0.0"
+}
+
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 
@@ -10,7 +15,7 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # build blocks. A build block runs provisioners and post-processors on a
 # source.
 source "amazon-ebs" "immutable-infrastructure" {
-  ami_name      = "immutable-infrastructure-app${local.timestamp}"
+  ami_name      = "immutable-infrastructure-app${var.version}"
   instance_type = "t2.micro"
   region        = var.region
   source_ami_filter {
@@ -38,16 +43,14 @@ build {
       "os"             = "Ubuntu",
       "ubuntu-version" = "Focal 20.04",
     }
-
-    sources = ["source.amazon-ebs.immutable-infrastructure"]
-
-    provisioner "file" {
-      source      = "../tf-packer.pub"
-      destination = "/tmp/tf-packer.pub"
-    }
-    provisioner "shell" {
-      script = "../scripts/setup.sh"
-    }
+  }
+  sources = ["source.amazon-ebs.immutable-infrastructure"]
+  provisioner "file" {
+    source      = "../tf-packer.pub"
+    destination = "/tmp/tf-packer.pub"
+  }
+  provisioner "shell" {
+    script = "../scripts/setup.sh"
   }
 }
 
