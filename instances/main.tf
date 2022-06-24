@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.26.0" //this version is depecrated, had issues on mac w m1 chip 
+      version = " 3.63.0" //this version is depecrated, had issues on mac w m1 chip 
       //use 3.63.0 if this version doesn't work when running terraform apply && terraform init 
     }
   }
@@ -12,6 +12,18 @@ terraform {
 provider "aws" {
   region = var.region
 }
+
+data "hcp_packer_iteration" "ubuntu" {
+  bucket_name = "immutable-infrastructure"
+  channel = "production"
+}
+data "hcp_packer_image" "ubuntu-us-east-1" {
+  bucket_name = "immutable-infrastructure"
+  cloud_provider = "aws"
+  iteration_id = data.hcp_packer_iteration.ubuntu.ulid
+  region = "us-east-1"
+}
+
 
 resource "aws_vpc" "vpc" {
   cidr_block           = var.cidr_vpc
@@ -77,7 +89,7 @@ resource "aws_security_group" "sg_22_80" {
 }
 
 resource "aws_instance" "web" {
-  ami                         = "ami-YOUR-AMI-ID"
+  ami                         = data.hcp_packer_image.ubuntu-us-east-1.cloud_image_id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_22_80.id]

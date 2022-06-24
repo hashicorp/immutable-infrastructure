@@ -7,6 +7,7 @@ variable "version" {
   type    = string
   default = "1.0.1"
 }
+//make 
 
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
@@ -52,5 +53,6 @@ build {
   provisioner "shell" {
     script = "../scripts/setup.sh"
   }
+
 }
 
