@@ -53,8 +53,8 @@ Additional files:
 3. https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure
 4. https://www.hashicorp.com/resources/modern-infrastructure-automation-with-packer-terraform-and-consul
 
-
-[] Make sure to set ssh-rsa keys: tf-packer and tf-packer.pub 
-[] Also when ssh-ing to server the directory path to run the web-app is: 
-/go/pkg/mod/github.com/sabinlehaci/go-web-app@v0.0.0-20220706130610-b856cb378344$ 
+**Web-App:** 
+1. Make sure to set ssh-rsa keys: tf-packer and tf-packer.pub 
+2. Also when ssh-ing to server the directory path to run the web-app is: 
+3. /go/pkg/mod/github.com/sabinlehaci/go-web-app@v0.0.0-20220706130610-b856cb378344$ 
 
