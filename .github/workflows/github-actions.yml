@@ -38,9 +38,10 @@ jobs:
           env: 
             GOOS: linux 
             GOARCH: arm64 
+          working-directory: ./app 
           run: |
             go mod tidy
-            go build -o bin/server app/main.go
+            go build -o bin/server 
 
 
         - name: Fix Template
