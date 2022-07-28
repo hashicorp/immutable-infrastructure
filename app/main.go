@@ -6,14 +6,13 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
 	_ "github.com/jackc/pgx/v4/stdlib"
-	"github.com/sabinlehaci/go-web-app/db"
-	"github.com/sabinlehaci/go-web-app/handler"
-	"github.com/sabinlehaci/go-web-app/tmdbApi"
+	"github.com/hashicorp/immutable-infrastructure/db"
+	"github.com/hashicorp/immutable-infrastructure/handler"
+	"github.com/hashicorp/immutable-infrastructure/tmdbApi"
 )
 
 func main() {

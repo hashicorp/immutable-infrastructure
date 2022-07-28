@@ -10,10 +10,10 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/hashicorp/immutable-infrastructure/db"
+	"github.com/hashicorp/immutable-infrastructure/tmdbApi"
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgerrcode"
-	"github.com/sabinlehaci/go-web-app/db"
-	"github.com/sabinlehaci/go-web-app/tmdbApi"
 	"golang.org/x/sync/errgroup"
 )
 
