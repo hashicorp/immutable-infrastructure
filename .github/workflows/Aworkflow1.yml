@@ -50,9 +50,6 @@ jobs:
         run: | 
           cd "$GITHUB_WORKSPACE/Deployment-Scripts/"
           python $GITHUB_WORKSPACE/Deployment-Scripts/workflow_trigger.py
-          ${{ env.pat_token }} 
-          ${{ github.event.inputs.workflow2_github_account }}  
-          ${{ github.event.inputs.workflow2_repo_github }} 
-          ${{ github.event.inputs.workflow2_name}}   
+          ${{ env.pat_token }}   
 
 
