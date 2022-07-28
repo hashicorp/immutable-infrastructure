@@ -118,5 +118,6 @@ resource "aws_instance" "web" {
 }
 
 output "public_ip" {
+  description = "URL for check endpoint"
   value = "http://${aws_instance.web.public_ip}:8080"
 }

@@ -74,6 +74,23 @@ build {
   }
   
   sources = ["source.amazon-ebs.immutable-infrastructure"]
+
+  // Create directories
+  provisioner "shell" {
+    inline = ["sudo mkdir /opt/webapp/"]
+  }
+
+   // Copy binary to tmp
+  provisioner "file" {
+    source      = "../bin/server"
+    destination = "/tmp/"
+  }
+
+   // move binary to desired directory
+  provisioner "shell" {
+    inline = ["sudo mv /tmp/server /opt/webapp/"]
+  }
+
   provisioner "file" {
     source      = "../tf-packer.pub"
     destination = "/tmp/tf-packer.pub"
@@ -81,5 +98,14 @@ build {
   provisioner "shell" {
     script = "../scripts/setup.sh"
   }
+
+   post-processor "manifest" {
+    output     = "packer_manifest.json"
+    strip_path = true
+    custom_data = {
+      iteration_id = packer.iterationID
+    }
+  }
+
 }
 
