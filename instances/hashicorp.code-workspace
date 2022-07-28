@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "../../hashicorp"
+		},
+		{
+			"path": "../../go-tutorial"
+		},
+		{
+			"path": "../../packer_tutorial"
+		},
+		{
+			"path": "../../learn-terraform-provisioning"
+		},
+		{
+			"path": "../../mongo-golang"
+		},
+		{
+			"path": "../../golang-server"
+		},
+		{
+			"path": "../../packer-intern"
+		},
+		{
+			"path": "../../learn-hcp-packer-get-started"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
