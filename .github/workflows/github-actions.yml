@@ -40,6 +40,14 @@ jobs:
             GOARCH: arm64 
           run: |
             go mod init github.com/hashicorp/immutable-infrastructure
+            go mod tidy
+            go get github.com/golang-migrate/migrate/v4
+            go get github.com/golang-migrate/migrate/v4/database/postgres
+            go get github.com/golang-migrate/migrate/v4/source/iofs
+            go get github.com/hashicorp/immutable-infrastructure/db
+            go get github.com/hashicorp/immutable-infrastructure/handler
+            go get github.com/hashicorp/immutable-infrastructure/tmdbApi
+            go get github.com/jackc/pgx/v4/stdlib
             go build -o bin/server app/main.go
 
 
