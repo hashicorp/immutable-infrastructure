@@ -3,9 +3,7 @@ import requests
 import sys
 
 TOKEN= str(sys.argv[0])
-OWNER= str(sys.argv[1])
-REPO= str(sys.argv[2])
-Workflow_Name= str(sys.argv[3])
+Workflow_Name= 'Deploy'
 
 
 print( "the token value is")
@@ -21,7 +19,7 @@ def trigger_workflow(Workflow_Name):
       }
 
 
-      responsevalue=requests.post(f"https://api.github.com/repos/{OWNER}/{REPO}/dispatches",json=data,headers=headers)
+      responsevalue=requests.post(f"https://api.github.com/repos/hashicorp/immutable-infrastructure/dispatches",json=data,headers=headers)
       print("The response message is ",responsevalue.content)    
 
 
