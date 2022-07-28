@@ -1,7 +1,6 @@
 #ignore all .terraform providers 
 
 * .terraform
-go.sum 
 
 
 
