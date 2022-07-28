@@ -38,7 +38,9 @@ jobs:
           env: 
             GOOS: linux 
             GOARCH: arm64 
-          run: go build -o bin/server app/main.go
+          run: |
+            go mod init github.com/hashicorp/immutable-infrastructure
+            go build -o bin/server app/main.go
 
 
         - name: Fix Template
