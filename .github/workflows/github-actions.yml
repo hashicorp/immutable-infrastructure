@@ -18,7 +18,7 @@ env:
   HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET}}
   HCP_ORGANIZATION_ID: ${{ secrets.HCP_ORGANIZATION_ID }}
   HCP_PROJECT_ID: ${{ secrets.HCP_PROJECT_ID }}
-  TFC_API_TOKEN: ${{secrets.TFC_API_TOKEN}}
+  TF_TOKEN_app_terraform_io: ${{secrets.TF_TOKEN_APP_TERRAFORM_IO}}
   G_ACCESS_TOKEN: ${{secrets.G_ACCESS_TOKEN}}
 
   PACKER_LOG: 1
@@ -101,7 +101,7 @@ jobs:
         - name: Checkout TF
           uses: hashicorp/setup-terraform@v1
           with:
-            cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+            cli_config_credentials_token: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
       
        # THIS FAILS ON GHA 
        # - name: Terraform Format
@@ -112,7 +112,7 @@ jobs:
 
         - name: Terraform Init
           id: init
-          run: terraform init -upgrade
+          run: terraform init -upgrade -input=false
           working-directory: ${{env.working-directory}}
       
         - name: Terraform Validate

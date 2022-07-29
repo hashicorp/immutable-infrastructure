@@ -19,9 +19,6 @@ terraform {
   workspaces {
    name = "immutable" //Enter your own workspace name  
    }
-   credentials "app.terraform.io" {
-     token = "${secrets.TFC_API_TOKEN}"
-   }
   }
 }
 provider "hcp" {}
