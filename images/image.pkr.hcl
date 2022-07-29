@@ -64,7 +64,7 @@ source "amazon-ebs" "immutable-infrastructure" {
 build {
   
   hcp_packer_registry {
-    bucket_name = "{your bucket-name}"
+    bucket_name = "immutable-infrastructure"  //{your bucket-name}
     description = "Immutable-Infrastructure Demo"
     bucket_labels = var.aws_tags
     build_labels = {
