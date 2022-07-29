@@ -21,6 +21,9 @@ terraform {
    }
   }
 }
+variable "iteration_id" {
+  description = "HCP Packer Iteration ID"
+}
 provider "hcp" {}
 
 provider "aws" {
@@ -31,14 +34,11 @@ data "hcp_packer_iteration" "ubuntu" {
   bucket_name = var.hcp_bucket_ubuntu
   channel     = var.hcp_channel
 }
-locals {
-  iteration_id = data.hcp_packer_iteration.ubuntu.ulid
-} 
 
 data "hcp_packer_image" "ubuntu-us-east-1" {
   bucket_name    = data.hcp_packer_iteration.ubuntu.bucket_name
   cloud_provider = "aws"
-  iteration_id   = local.iteration_id
+  iteration_id   = var.iteration_id 
   region         = var.region
 }
 
