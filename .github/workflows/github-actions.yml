@@ -109,9 +109,10 @@ jobs:
        #   run: terraform fmt -check
        #   working-directory: ${{env.working-directory}}
 
+
         - name: Terraform Init
           id: init
-          run: terraform init -input=false
+          run: terraform init -upgrade -input=false
           working-directory: ${{env.working-directory}}
       
         - name: Terraform Validate
