@@ -82,7 +82,7 @@ build {
 
    // Copy binary to tmp
   provisioner "file" {
-    source      = "../bin/server"
+    source      = "./app/bin/server"
     destination = "/tmp/"
   }
 
