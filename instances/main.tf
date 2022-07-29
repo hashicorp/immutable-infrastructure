@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = " 3.63.0" //this version is depecrated, had issues on mac w m1 chip 
+      version = "4.23.0" //this version is depecrated, had issues on mac w m1 chip 
       //use 3.63.0 if this version doesn't work when running terraform apply && terraform init 
     }
     hcp = {
@@ -20,10 +20,8 @@ terraform {
    name = "immutable" //Enter your own workspace name  
    }
   }
-
-  required_version = ">= 0.14.5"
 }
-//provider "hcp" {}
+provider "hcp" {}
 
 provider "aws" {
   region = var.region

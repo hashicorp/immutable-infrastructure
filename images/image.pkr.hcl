@@ -95,7 +95,7 @@ build {
     source      = "../tf-packer.pub"
     destination = "/tmp/tf-packer.pub"
   }
-  provisioner "shell" {
+  provisioner "shell" { //this is useless now since we are building the go app within this whole repo 
     script = "../scripts/setup.sh"
   }
 
