@@ -161,7 +161,9 @@ jobs:
           run: exit 1 
 
         - name: Terraform Apply 
-          if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+          id: tf_apply
+          working-directory: ${{env.working-directory}}
+          if: github.ref == 'refs/heads/update-tfc-backend' && github.event_name == 'push'
           run: | 
             terraform apply -auto-approve -var="iteration_id=${{needs.job1.outputs.iteration_id }}"
             public_ip="$(terraform output -raw public_ip)"
