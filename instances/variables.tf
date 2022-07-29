@@ -26,3 +26,4 @@ variable "hcp_channel" {
   description = "HCP Packer channel name"
   default     = "production"
 }
+
