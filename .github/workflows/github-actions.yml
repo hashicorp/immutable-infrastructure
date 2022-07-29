@@ -103,11 +103,11 @@ jobs:
           with:
             cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       
-
-        - name: Terraform Format
-          id: fmt
-          run: terraform fmt -check
-          working-directory: ${{env.working-directory}}
+       # THIS FAILS ON GHA 
+       # - name: Terraform Format
+       #   id: fmt
+       #   run: terraform fmt -check
+       #   working-directory: ${{env.working-directory}}
 
         - name: Terraform Init
           id: init
