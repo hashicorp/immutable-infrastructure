@@ -22,6 +22,7 @@ env:
   G_ACCESS_TOKEN: ${{secrets.G_ACCESS_TOKEN}}
   TMDB: ${{secrets.TMDB}}
   POSTGRES_URL: $ {{secrets.POSTGRES_URL}}
+  POSTGRES_PASSWORD: $ {{ secrets.POSTGRES_PASSWORD}}
 
 
   PACKER_LOG: 1
@@ -37,6 +38,7 @@ jobs:
         postgres:
           image: postgres
           env: 
+            POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
             POSTGRES_URL: ${{secrets.POSTGRES_URL}}
           
           options: >- 
