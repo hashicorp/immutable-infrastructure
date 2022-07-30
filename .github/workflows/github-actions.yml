@@ -11,7 +11,7 @@ on:
 
 
 env: 
-  AWS_ACCESS_KEY_ID :  ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_ACCESS_KEY_ID :  ${{ secrets.AWS_ACCESS_KEY_ID }}       #walking through this in Instruqt I will have to let user know to input his env variables. Either through github secrets or in a separate env file and add it to A .gitignore 
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: us-east-1
   HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
@@ -172,7 +172,30 @@ jobs:
 
         - name: Invoke E2E Test 
           working-directory: ./.github/scripts
-          run: ./e2e_test.sh ${{ steps.tf_apply.outputs.public_ip }}
+          run: chmod 777 ./e2e_test.sh ${{ steps.tf_apply.outputs.public_ip }}
+
+      #  - name: Clean up Testing Infrastructure 
+      #    if: always() # Always run clean up steps 
+      #   working-directory: ${{env.working-directory}}
+      #   run: terraform destroy -auto-approve -var="iteration_id=${{ needs.job1.outputs.iteration_id }}"
+
+
+ # promote-dev-staging:
+    #  name: Promote to Dev and Staging Channels 
+   #   needs: ['job1','job2'] #If test job fails this will be skipped
+   #   runs-on: ubuntu-latest
+    #  steps: 
+     #   - name: Checkout Repo
+     #     uses: actions/checkout@v2 
+
+     #   - name: Promote Iteration to Dev 
+     #     working-directory: .github/scripts 
+     #     run: chmod 777 ./set_iteration.sh
+
+  
+
+
+
 
 
 
