@@ -20,6 +20,9 @@ env:
   HCP_PROJECT_ID: ${{ secrets.HCP_PROJECT_ID }}
   TF_TOKEN_app_terraform_io: ${{secrets.TF_TOKEN_APP_TERRAFORM_IO}}
   G_ACCESS_TOKEN: ${{secrets.G_ACCESS_TOKEN}}
+  TMDB: ${{secrets.TMDB}}
+  POSTGRES_URL: $ {{secrets.POSTGRES_URL}}
+
 
   PACKER_LOG: 1
 
@@ -29,6 +32,20 @@ jobs:
       runs-on: ubuntu-latest
       outputs: 
         iteration_id: ${{ steps.hcp.outputs.iteration_id }}
+
+      services: 
+        postgres:
+          image: postgres
+          env: 
+            POSTGRES_URL: ${{secrets.POSTGRES_URL}}
+          
+          options: >- 
+            --health-cmd pg_isready
+            --health-interval 10s 
+            --health-timeout 5s 
+            --health-retries 5
+          ports: 
+            - 5432:5432
 
       steps: 
         - name: Checkout Repository 
@@ -172,7 +189,9 @@ jobs:
 
         - name: Invoke E2E Test 
           working-directory: ./.github/scripts
-          run: chmod 777 ./e2e_test.sh ${{ steps.tf_apply.outputs.public_ip }}
+          run: |
+            chmod 755 ./e2e_test.sh 
+            ./e2e_test.sh ${{ steps.tf_apply.outputs.public_ip }}
 
       #  - name: Clean up Testing Infrastructure 
       #    if: always() # Always run clean up steps 
