@@ -56,7 +56,7 @@ jobs:
         - name: Compile Application
           env: 
             GOOS: linux 
-            GOARCH: arm64 
+            GOARCH: amd64 
           working-directory: ./app 
           run: |
             go build -o bin/server 
