@@ -6,22 +6,15 @@ export TMDB = af2b4e4b7c2c224650dfad4faa2de6ff
 export POSTGRES_URL= postgres://postgres:mysecretpassword@localhost:5432/postgres
 
 apt-get -q -y install postgresql 
+sudo bash 
+apt install -y curl ca-certificates gnupg 
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list' 
+apt update -y
+apt install -y postgresql-client-11
+pg_basebackup -V
 
-sudo apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common 
-
-curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add - 
-
-sudo add-apt-repository \
-    "deb https://apt.dockerproject.org/repo/ \
-    ubuntu-$(lsb_release -cs) \
-    main" 
-
-sudo apt-get update
-sudo apt-get -y install docker-engine 
+yes | sudo apt-get install docker.io 
 
 # add current user to docker group so there is no need to use sudo when running docker
 sudo usermod -aG docker $(whoami)
