@@ -19,7 +19,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const projectDirName = "webapp"
+const projectDirName = "/opt/webapp"
 
 func goDotEnvVar(key string) string {
 	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
