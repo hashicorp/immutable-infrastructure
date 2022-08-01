@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get -y -qq install curl wget git vim apt-transport-https ca-certificates
 sudo add-apt-repository ppa:longsleep/golang-backports -y
 sudo snap install go --classic 
-sudo apt-get -q -y install postgresql 
+sudo apt-get -q -y install postgresql-client-11
 sudo bash 
 apt install -y curl ca-certificates gnupg 
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -23,7 +23,7 @@ yes | sudo apt-get install docker.io
 # add current user to docker group so there is no need to use sudo when running docker
 sudo usermod -aG docker $(whoami)
 
-docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:14
+sudo docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:14
 
 
 

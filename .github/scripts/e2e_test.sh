@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 set -eEuo pipefail
+#maybe do a docker rm here? 
 
 usage() {
   cat <<EOF
