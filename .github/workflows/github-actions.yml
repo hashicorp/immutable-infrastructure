@@ -57,6 +57,9 @@ jobs:
           env: 
             GOOS: linux 
             GOARCH: amd64 
+            TMDB: ${{secrets.TMDB}}
+            POSTGRES_URL: $ {{secrets.POSTGRES_URL}}
+            
           working-directory: ./app 
           run: |
             go build -o bin/server 
@@ -121,12 +124,6 @@ jobs:
           uses: hashicorp/setup-terraform@v1
           with:
             cli_config_credentials_token: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
-      
-       # THIS FAILS ON GHA 
-       # - name: Terraform Format
-       #   id: fmt
-       #   run: terraform fmt -check
-       #   working-directory: ${{env.working-directory}}
 
 
         - name: Terraform Init
@@ -193,7 +190,7 @@ jobs:
           working-directory: ./.github/scripts
           run: |
             chmod 755 ./e2e_test.sh 
-            ./e2e_test.sh ${{ steps.tf_apply.outputs.public_ip }}
+            ./e2e_test.sh "${{ steps.tf_apply.outputs.public_ip }}"
 
       #  - name: Clean up Testing Infrastructure 
       #    if: always() # Always run clean up steps 
