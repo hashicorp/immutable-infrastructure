@@ -91,13 +91,13 @@ build {
     inline = ["sudo mv /tmp/server /opt/webapp/"]
   }
 
-  provisioner "file" {
-    source      = "../tf-packer.pub"
-    destination = "/tmp/tf-packer.pub"
-  }
-  provisioner "shell" { //this is useless now since we are building the go app within this whole repo 
-    script = "../scripts/setup.sh"
-  }
+  //provisioner "file" {
+  //  source      = "../tf-packer.pub"
+  //  destination = "/tmp/tf-packer.pub"
+  //}
+  //provisioner "shell" { //this is useless now since we are building the go app within this whole repo 
+  //  script = "../scripts/setup.sh"
+  //}
 
    post-processor "manifest" {
     output     = "packer_manifest.json"

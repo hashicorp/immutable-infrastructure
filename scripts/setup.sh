@@ -9,24 +9,15 @@ sudo apt-get -y -qq install curl wget git vim apt-transport-https ca-certificate
 sudo add-apt-repository ppa:longsleep/golang-backports -y
 sudo snap install go --classic 
 sudo apt-get -q -y install postgresql 
+sudo bash 
+apt install -y curl ca-certificates gnupg 
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list' 
+apt update -y
+apt install -y postgresql-client-11
+pg_basebackup -V
 
-
-
-sudo apt-get update
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo apt-get install docker.io
+yes | sudo apt-get install docker.io 
 
 
 # add current user to docker group so there is no need to use sudo when running docker
@@ -73,8 +64,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export TMDB=af2b4e4b7c2c224650dfad4faa2de6ff
 export POSTGRES_URL=postgres://postgres:mysecretpassword@localhost:5432/postgres
 go install github.com/go-sql-driver/mysql
-go install github.com/sabinlehaci/go-web-app@latest 
-go install github.com/sabinlehaci/go-web-app@6cde1ad36f1f8c2ee8c6fa479b6990454b8f268f
+go install github.com/sabinlehaci/go-web-app@fce5140f2f3a609c36b6061b39726b0ee55ed6ca
 
 EOF
 
