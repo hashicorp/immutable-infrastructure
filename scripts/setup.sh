@@ -10,21 +10,24 @@ sudo add-apt-repository ppa:longsleep/golang-backports -y
 sudo snap install go --classic 
 sudo apt-get -q -y install postgresql 
 
-sudo apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common 
 
-curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add - 
-
-sudo add-apt-repository \
-    "deb https://apt.dockerproject.org/repo/ \
-    ubuntu-$(lsb_release -cs) \
-    main" 
 
 sudo apt-get update
-sudo apt-get -y install docker-engine 
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get install docker.io
+
 
 # add current user to docker group so there is no need to use sudo when running docker
 sudo usermod -aG docker $(whoami)
@@ -67,15 +70,11 @@ cd /home/terraform
 
 export GOPATH=/home/terraform/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export TMDB="af2b4e4b7c2c224650dfad4faa2de6ff"
-export POSTGRES_URL="postgres://postgres:mysecretpassword@localhost:5432/postgres"
-export APP_HOME = /home/terraform
+export TMDB=af2b4e4b7c2c224650dfad4faa2de6ff
+export POSTGRES_URL=postgres://postgres:mysecretpassword@localhost:5432/postgres
 go install github.com/go-sql-driver/mysql
 go install github.com/sabinlehaci/go-web-app@latest 
 go install github.com/sabinlehaci/go-web-app@6cde1ad36f1f8c2ee8c6fa479b6990454b8f268f
-
-mv go-web-app ${APP_HOME}
-
 
 EOF
 
