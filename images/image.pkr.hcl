@@ -88,7 +88,7 @@ build {
 
    // move binary to desired directory
   provisioner "shell" {
-    inline = ["sudo mv /tmp/server /opt/webapp/"]
+    inline = ["sudo mv /tmp/server /home/terraform/go/pkg/mod/github.com/sabinlehaci/"]
   }
 
   provisioner "file" {

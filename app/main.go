@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 
 	"github.com/golang-migrate/migrate/v4"
@@ -19,7 +20,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const projectDirName = "/opt/webapp"
+const projectDirName = "sabinlehaci"
 
 func goDotEnvVar(key string) string {
 	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
