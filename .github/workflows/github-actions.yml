@@ -62,7 +62,7 @@ jobs:
             
           working-directory: ./app 
           run: |
-            go build -o /home/terraform/go/pkg/mod/github.com/sabinlehaci/server 
+            go build -o bin/server 
 
 
         - name: Fix Template
@@ -186,11 +186,11 @@ jobs:
             echo "::set-output name=public_ip::${public_ip}"
 
 
-        - name: Invoke E2E Test 
-          working-directory: ./.github/scripts
-          run: |
-            chmod 755 ./e2e_test.sh 
-            ./e2e_test.sh "${{ steps.tf_apply.outputs.public_ip }}"
+       # - name: Invoke E2E Test 
+       #   working-directory: ./.github/scripts
+       #   run: |
+       #     chmod 755 ./e2e_test.sh 
+       #     ./e2e_test.sh "${{ steps.tf_apply.outputs.public_ip }}"
 
       #  - name: Clean up Testing Infrastructure 
       #    if: always() # Always run clean up steps 

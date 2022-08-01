@@ -88,7 +88,7 @@ build {
 
    // move binary to desired directory
   provisioner "shell" {
-    inline = ["sudo mv /tmp/server /home/terraform/go/pkg/mod/github.com/sabinlehaci/"]
+    inline = ["sudo mv /tmp/server /opt/webapp/"]
   }
 
   provisioner "file" {
@@ -106,5 +106,6 @@ build {
       iteration_id = packer.iterationID
     }
   }
+
 }
 
