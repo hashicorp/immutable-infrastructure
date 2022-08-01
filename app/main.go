@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"embed"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -14,11 +15,24 @@ import (
 	"github.com/hashicorp/immutable-infrastructure/handler"
 	"github.com/hashicorp/immutable-infrastructure/tmdbApi"
 	_ "github.com/jackc/pgx/v4/stdlib"
+	"github.com/joho/godotenv"
 )
+
+func goDotEnvVar(key string) string {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+	return os.Getenv(key)
+}
 
 func main() {
 	// For example: POSTGRES_URL="postgres://postgres:mysecretpassword@localhost:5432/postgres"
-	database, err := sql.Open("pgx", os.Getenv("POSTGRES_URL"))
+
+	dbHost := goDotEnvVar("POSTGRES_URL")
+	fmt.Printf("godotenv : %s = %s \n", "db Host", dbHost)
+
+	database, err := sql.Open("pgx", dbHost)
 	if err != nil {
 		log.Fatal("oops, db connection failed", err)
 	}

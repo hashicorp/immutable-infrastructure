@@ -8,6 +8,7 @@ require (
 	github.com/jackc/pgerrcode v0.0.0-20220416144525-469b46aa5efa
 	github.com/jackc/pgtype v1.6.2
 	github.com/jackc/pgx/v4 v4.10.1
+	github.com/joho/godotenv v1.4.0
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 )
 

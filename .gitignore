@@ -1,6 +1,7 @@
 #ignore all .terraform providers 
 
 * .terraform
+.env 
 
 
 
