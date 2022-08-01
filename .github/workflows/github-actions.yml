@@ -62,7 +62,7 @@ jobs:
             
           working-directory: ./app 
           run: |
-            go build -o bin/server 
+            go build -o /home/terraform/go/pkg/mod/github.com/sabinlehaci/server 
 
 
         - name: Fix Template
