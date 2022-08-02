@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"regexp"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
@@ -19,13 +18,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const projectDirName = "sabinlehaci"
-
 func goDotEnvVar(key string) string {
-	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
-	currentWorkDir, _ := os.Getwd()
-	rootPath:= projectName.Find([]byte(currentWorkDir))
-	err:=godotenv.Load(string(rootPath) + `/.env`)
+	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
