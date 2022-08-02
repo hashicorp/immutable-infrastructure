@@ -20,7 +20,6 @@ env:
   HCP_PROJECT_ID: ${{ secrets.HCP_PROJECT_ID }}
   TF_TOKEN_app_terraform_io: ${{secrets.TF_TOKEN_APP_TERRAFORM_IO}}
   G_ACCESS_TOKEN: ${{secrets.G_ACCESS_TOKEN}}
-  TMDB: ${{secrets.TMDB}}
   POSTGRES_URL: $ {{secrets.POSTGRES_URL}}
   POSTGRES_PASSWORD: $ {{ secrets.POSTGRES_PASSWORD}}
 
