@@ -43,6 +43,3 @@ variable "enable_autoscaling" {
   type = bool 
   default = false
 }
-
-
-
