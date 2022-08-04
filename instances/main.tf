@@ -123,8 +123,8 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_autoscaling_group" "example" {
-  name = "${var.cluster_name}-${aws_instance.web.name}"
-  launch_configuration = aws_instance.web.name 
+  name = "${var.cluster_name}-${aws_instance.web.ami}"
+  launch_configuration = aws_instance.web.ami 
   vpc_zone_identifier = aws_instance.web.subnet_id 
   health_check_type = "EC2"
   min_size = var.min_size
