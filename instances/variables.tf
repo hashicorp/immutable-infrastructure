@@ -27,3 +27,22 @@ variable "hcp_channel" {
   default     = "production"
 }
 
+
+variable "cluster_name" {
+  default = "sabinlehaci"
+}
+
+variable "min_size" {
+  description = "The minimum number of EC2 instances in the ASG" 
+  type = number
+  default= 2  
+}
+
+variable "enable_autoscaling" {
+  description = "if set to true, enable auto scaling"
+  type = bool 
+  default = false
+}
+
+
+

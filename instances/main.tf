@@ -113,10 +113,16 @@ resource "aws_instance" "web" {
   associate_public_ip_address = true
   user_data = file("${path.module}/userdata.sh")
 
+  lifecycle {  # This allow you to manip how a resource is built or destroyed within terraform , allows us to create the new resource before destroying the old one this allows us to do zero downtime deployment when building ami 
+    create_before_destroy = true 
+  }
+
   tags = {
     Name = "immutable-infrastructure"
   }
 }
+
+
 
 output "public_ip" {
   description = "URL for check endpoint"

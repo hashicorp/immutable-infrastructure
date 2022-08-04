@@ -75,11 +75,15 @@ build {
   
   sources = ["source.amazon-ebs.immutable-infrastructure"]
 
+  #Add SSH public key 
+  provisioner "file" {
+    source      = "../tf-packer.pub"
+    destination = "/tmp/tf-packer.pub"
+  }
   // Create directories
   provisioner "shell" {
     inline = ["sudo mkdir /opt/webapp/"]
   }
-
    // Copy binary to tmp
   provisioner "file" {
     source      = "../app/bin/server"
@@ -91,10 +95,7 @@ build {
     inline = ["sudo mv /tmp/server /opt/webapp/"]
   }
 
-  provisioner "file" {
-    source      = "../tf-packer.pub"
-    destination = "/tmp/tf-packer.pub"
-  }
+
   provisioner "shell" { //this is useless now since we are building the go app within this whole repo 
     script = "../scripts/setup.sh"
   }
