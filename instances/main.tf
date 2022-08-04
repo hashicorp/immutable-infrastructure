@@ -11,7 +11,7 @@ terraform {
     }
   }
 
-  #Chang
+  #Change
 
   cloud { 
   organization = "im-infr-proj" //Enter your own workspace form TFC
