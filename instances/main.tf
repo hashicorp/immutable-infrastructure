@@ -106,6 +106,8 @@ resource "aws_security_group" "sg_22_80" {
 }
 
 resource "aws_instance" "web" {
+  #Terraform will add a random string at the end to keep it unique. 
+  name_prefix = "worker-"
   ami                         = data.hcp_packer_image.ubuntu-us-east-1.cloud_image_id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.subnet_public.id
@@ -122,7 +124,7 @@ resource "aws_instance" "web" {
   }
 }
 
-/*resource "aws_autoscaling_group" "example" {
+resource "aws_autoscaling_group" "example" {
   name = "${var.cluster_name}-${aws_instance.web.ami}"
   launch_configuration = aws_instance.web.ami 
   vpc_zone_identifier = aws_instance.web.subnet_id 
@@ -138,9 +140,8 @@ resource "aws_instance" "web" {
     value  = var.cluster_name
     propagate_at_launch = true 
   }
-
 }
-*/ 
+
 
 
 

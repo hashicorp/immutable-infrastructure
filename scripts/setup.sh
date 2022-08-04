@@ -22,7 +22,7 @@ yes | sudo apt-get install docker.io
 
 # add current user to docker group so there is no need to use sudo when running docker
 sudo usermod -aG docker $(whoami)
-
+# we still have to run this command ourselves 
 sudo docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:14
 
 
@@ -61,8 +61,6 @@ cd /home/terraform
 
 export GOPATH=/home/terraform/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export TMDB=af2b4e4b7c2c224650dfad4faa2de6ff
-export POSTGRES_URL=postgres://postgres:mysecretpassword@localhost:5432/postgres
 go install github.com/go-sql-driver/mysql
 go install github.com/sabinlehaci/go-web-app@fce5140f2f3a609c36b6061b39726b0ee55ed6ca
 
