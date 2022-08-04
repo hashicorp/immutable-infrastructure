@@ -128,6 +128,7 @@ resource "aws_autoscaling_group" "example" {
   vpc_zone_identifier = aws_instance.web.subnet_id 
   health_check_type = "EC2"
   min_size = var.min_size
+  max_size = 3
   min_elb_capacity = var.min_size
   lifecycle {
     create_before_destroy = true
