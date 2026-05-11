@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright IBM Corp. 2022, 2026
+
 set -x
 
 # Install necessary dependencies
