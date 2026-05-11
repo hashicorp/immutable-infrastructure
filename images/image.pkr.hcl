@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2022, 2026
+
 variable "region" {
   type    = string
   default = "us-east-1"
